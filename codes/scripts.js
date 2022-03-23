@@ -28,7 +28,7 @@ function openForm() {
     }
   }*/
 
-  var objLogins = [
+  /*var objLogins = [
     {
       userID: 0,
       username: "admin@email.com",
@@ -43,6 +43,12 @@ function openForm() {
       firstname: "Uyenvy",
       lastname: "Nguyen"
     }
+  ];*/
+
+  var adminCheckBox = document.getElementById("adminCheck");
+  var objLogins = [
+    { userID: 0, username: "admin@email.com", password: "password123", firstname: "Admin", lastname: "of Top Commerce", isAdmin: true},
+    { userID: 1, username: "uyemvy@gmail.com", password: "password", firstname: "Uyenvy", lastname: "Nguyen", isAdmin: false}
   ];
 
   var numUsers = 0;
@@ -80,7 +86,8 @@ var registeredUsers = [];
       username: "None",
       password: "None",
       firstname: "None",
-      lastname: "None"
+      lastname: "None",
+      isAdmin: false
     }
     
 
@@ -90,14 +97,25 @@ var registeredUsers = [];
     document.getElementById('aForm').style.display = "none";
   //  var arrayEnd = Number(objLogins.length);
 
+  const newUserFields = document.getElementById('signup-form').getElementsByTagName('input');
+
+  const newRegister = {
+    id: Number(objLogins.length),
+    username: newUserFields['email2'].value,
+    password: newUserFields['psw2'].value,
+    firstname: newUserFields['firstname'].value,
+    lastname: newUserFields['lastname'].value,
+    isAdmin: newUserFields['adminCheck'].checked
+  };
+
   
-    const newRegister = {
+    /*const newRegister = {
       id: Number(objLogins.length),
       username: document.getElementById('email2').value,
       password: document.getElementById('psw2').value,
-      firstname: document.getElementById('firstname').value,
+      firstname: document.getElementById('signup-form').getElementsByTagName('input'),
       lastname: document.getElementById('lastname').value
-    };
+    };*/
  
     objLogins.push(newRegister);
 
@@ -118,24 +136,29 @@ var registeredUsers = [];
     }
   }
 
+
   var loginCheck = false;
   var adminRights = false;
 
   function validateLogin() {
     var username = document.getElementById("email").value;
     var password = document.getElementById("psw").value;
-    var adminCheckBox = document.getElementById("adminCheck");
-    var i = 0;
 
-    for (i=0; i< objLogins.length; i++) {
-      if (username == objLogins[0].username && password == objLogins[0].password && adminCheckBox.checked == true) {
-        window.alert("Admin login successful.");
-        loginCheck = true;
-        adminRights = true;
-        break;
+    for (i=0; i < objLogins.length && !loginCheck; i++) {
+      if (username == objLogins[i].username && password == objLogins[i].password) {
+        if (objLogins[i].isAdmin = true) {
+          window.alert("Admin login successful.");
+          adminRights = true;
+        }
+        else {
+          window.alert("Login successful.");
+        }
       }
-      else if (username == objLogins[i].username && password == objLogins[i].password && adminCheckBox.checked == false) {
+      index = i;
+      loginCheck = true;
+      /*else if (username == objLogins[index].username && password == objLogins[index].password && adminStatus == false) {
         window.alert("Login successful.");
+        index = i;
         loginCheck = true;
         adminRights = false;
         break;
@@ -149,7 +172,7 @@ var registeredUsers = [];
         window.alert("Login unsuccessful.");
         loginCheck = false;
         break;
-      }
+      }*/
     }
 
     if (loginCheck == true) {
@@ -161,15 +184,18 @@ var registeredUsers = [];
       document.getElementById('firstNameDisplay').innerHTML = objLogins[i].firstname;
       document.getElementById('lastNameDisplay').innerHTML = objLogins[i].lastname;
     }
-    else {
-
+    else if (username == "" || password == "") {
+      window.alert("Login fields cannot be blank!");
     }
+    else {
+      window.alert("Login unsuccessful.");
+    }
+
   }
 
   function logoutFunction() {
-    if (adminRights = true) {
-      adminRights == false;
-    }
+    adminRights = false;
+    loginCheck = false;
     document.getElementById('loginName').style.display = "inline-block";
       document.getElementById("logoutName").style.display = "none";
       document.getElementById('profileLink').style.display = "none";
@@ -423,4 +449,21 @@ function clearCart() {
   document.getElementById('quantityApples').innerHTML = 0;
   document.getElementById('quantityShirtAs').innerHTML = 0;
   document.getElementById('totalAmount').innerHTML = 0;
+}
+
+function contactSubmit() {
+  var name = document.forms['contactForm']['nameContact'];
+  var email = document.forms['contactForm']['emailContact'];
+  var phone = document.forms['contactForm']['phoneContact'];
+  var msg = document.forms['contactForm']['msgContact'];
+
+  if (name.value == "" || email.value == ""|| phone.value ==""|| msg.value=="") {
+    window.alert("One or more required fields in the Contact form is missing!");
+    return false;
+  }
+  else {
+    window.alert("Contact form received.");
+
+    document.getElementById('contactUs').style.display = "none";
+  }
 }

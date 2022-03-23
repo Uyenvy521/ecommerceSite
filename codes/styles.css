@@ -27,7 +27,6 @@ h1, h2, h3, h4, h5, h6, p {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    left: 0;
     width: 100%;
     height: 100px;
     background-color: powderblue;
@@ -263,7 +262,7 @@ input::-webkit-outer-spin-button {
     width: 20%;
 }
 
-.method-selected, .btn-primary {
+.method-selected, .btn-primary, #contactSubmitBtn {
     background: powderblue;
     color: black;
     padding: 10px;
