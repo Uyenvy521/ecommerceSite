@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<head>
+    <title>Top Commerce</title>
+    <meta name="author" content="Uyenvy Nguyen">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="codes/styles.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="codes/scripts.js" async></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="scripts/respond.min.js">
+	</script>
+	<![endif]-->
+    <script src="https://kit.fontawesome.com/7d5770760a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div id="stickyBar">
+            <div id="logoImg"><a name="home"/><a href="index.html"><img src="images/logo.png" alt="Top Commerce logo" height="80px" width="230px"></a></div>
+            <nav>
+                <ul id="menuBar" class="menuClass">
+                    <span id="loginName"><li><a onclick="openForm()"><i class="fa-solid fa-user"></i> Login</a></li></span>
+                    <span id="profileLink"><li><a onclick="profileFunction()"><i class="fa-solid fa-address-card"></i> Profile</a></li></span>
+                    <span id="logoutName"><li><a onclick="logoutFunction()" onsubmit="return false;"><i class="fa-solid fa-user"></i> Logout</a></li></span>
+                    <li><a href="#shop"><i class="fa-solid fa-shop"></i> Shop</a></li>
+                    <li><a href="#about"><i class="fa-solid fa-comment-dots"></i> About Us</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-comments"></i> Contact Us</a></li>
+                    <li class="cart"><a onclick="cartWindow()"><i class="fa-solid fa-cart-shopping"></i> Cart</a></li>
+                </ul>
+            </nav> 
+        </div>
+    </header>
+
+    <!-- ------------Profile Form (user)-->
+    <div class="profilePopup" id="profilePop">
+        <div id="profileHeader">
+            <h1><i class="fa-solid fa-sun"></i> Hello there, <span id="firstNameDisplay">FirstName</span> <span id="lastNameDisplay">LastName</span>.</h1>
+
+            <h1><a class ="closeX" onclick="profileClose()"><i class="fa-solid fa-x"></i></a></h1>
+        </div>
+        <div id= "profileNormal">            
+            <div id="profileSec">
+                <div id="profileEdit">
+                    <b>Nickname: </b> <span id="nicknameNameDisplay">none</span> <button type="button" id="editBtn" onclick="editNickname()"><i class="fa-solid fa-pencil"></i> Edit</button>
+                </div>
+                <br/>
+                <div id="orderSection">
+                    <span id="orderHistory">You have not made any orders yet!</span>
+                </div>
+            </div>
+        </div>
+
+        <div id= "profileAdmin">            
+            <div id="profileSec">
+                <div id="profileEdit">
+                    <b>Nickname: </b> <span id="nicknameNameDisplay">none</span> <button type="button" id="editBtn" onclick="editNickname()"><i class="fa-solid fa-pencil"></i> Edit</button>
+                </div>
+                <br/>
+                <div id="adminUsers">
+                    <b>Users: </b>
+                    <br/>
+                    <span id="userList"  onload="loadUsers()">User List Here</span>
+                </div>
+                <br/>
+                <div id="orderSection">
+                    <b>Order List: </b>
+                    <br/>
+                    <span id="viewOrderHistory">No orders have been made yet!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------Login Form------------------>
+
+    <div class="form-popup" id="myForm">
+        <form class="form-container"method="post" onsubmit="return false;">
+          <h1>Login to Top Commerce</h1>
+      
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Email" name="email" id="email" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Password" name="psw" id="psw" required>
+
+          <input type="checkbox" id="adminCheck"> I am an admin
+          <br/><br/>
+
+          New member? <a id="signuplink" onclick="signUpForm()">Sign up today!</a>
+            <br/><br/>
+
+          <button type="submit" class="btn" onclick="validateLogin()">Login</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+
+
+      <!------------------Signup Form--------------->
+    <div class="signupPopup" id="aForm">
+        <form class="form-container" method="post" onsubmit="return false;">
+            <h1>Please enter the following to register for an account!</h1>
+            <label for="firstname"><b>First Name</b></label>
+            <input type="text" placeholder="First Name" id="firstname" required>
+            <label for="lastname"><b>Last Name</b></label>
+            <input type="text" placeholder="Last Name" id="lastname">
+            <label for="email2"><b>Email</b></label>
+             <input type="text" placeholder="example@email.com" name="email2" required>
+      
+             <label for="psw2"><b>Password</b></label>
+             <input type="password" placeholder="ExamplePassword123" id="psw2" required>
+            
+             <button type="submit" class="btn" onclick="registerForm()">Register Now</button>
+             <button type="button" class="btn cancel" onclick="closeSignUpForm()">Close</button>
+        </form>
+    </div>
+
+    <!-----------------------Home Page-------------------->
+
+    <section>
+        <div id="featuredSection">
+            <h1>The world's #1 online stop to shop!</h1>
+            <br/>
+            <div id="siteFeatures">
+                <table id="featureTable">
+                    <tr>
+                        <td><img src="images/feature_delivery.png" alt="Delivery truck" class="featureRound"></td>
+                        <td><img src="images/feature_food.png" alt="Groceries" class="featureRound"></td>
+                        <td><img src="images/feature_customerService.png" alt="Customer service representative" class="featureRound"></td>
+                        <td><img src="images/feature_money.jpg" alt="Hand with paper money bill" class="featureRound"></td>
+                    </tr>
+                    <tr>
+                        <td><h1>Fast and free shipping!</h1></td>
+                        <td><h1>Fresh products!</h1></td>
+                        <td><h1>24/7 customer service!</h1></td>
+                        <td><h1>Affordable prices!</h1></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <br/><br/><br/><br/>
+
+      <!--------------Cart----------------->
+      <div id="cartSpace">
+        <div class="cartHeader">
+            <h1 class="cartHeading">Order Summary</h1>
+            <button class="removeAction" onclick="clearCart()"><h5>Remove all items</h5></button>
+            <h1><a class = "closeX" onclick="cartClose()"><i class="fa-solid fa-x"></i></a></h1>
+        </div>
+        <div class="cartContainer">
+            <div class="payment-form">
+                <div class="payment-method">
+                    <button class="method-selected">
+                        <i class="fa-solid fa-credit-card"></i> <span>Credit Card</span>
+                    </button>
+
+                    <button class="method-selected">
+                        <i class="fa-brands fa-paypal"></i></i> <span onclick="payPal()">PayPal</span>
+                    </button>
+                </div>
+                
+                <form action="#">
+                    <div class="cardholder-name">
+                        <label for="cardholder-name" class="label-default">Cardholder name</label>
+                        <br/>
+                        <input type="text" id="cardholder-name" class="input-default" required>
+                    </div>
+
+                    <div class="card-number">
+                        <label for="card-number" class="label-default">Cardholder number</label>
+                        <br/>
+                        <input type="number" id="ard-number" class="input-default" required>
+                    </div>
+
+                    <div class="input-flex">
+                        <div class="expire-date">
+                            <label for="expire-date" class="label-default">Expiration date</label>
+                            <br/>
+                        </div>
+                        
+                        <div class="input-flex">
+                            <input type="number" name="day" id="expire-date" placeholder=""31" min="1" max="31" class="input-default" required> / <input type="number" name="month" id="expire-date" placeholder=""12" min="1" max="12" class="input-default required">
+                        </div>
+
+                        <div class="cvv">
+                            <label for="cvv" class="label-default">CVV</label>
+                            <input type="number" id="cvv" class="input-default" required>
+                        </div>
+                    </div>
+                    <br/>
+                    <hr/>
+                    <div class="amount">
+                        <div class="total">
+                            <span>Total: </span>$ <span id="totalAmount">0</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" type="button" onclick="payment()" method="post" onsubmit="return false;"><b>Pay</b> </button>
+                </form>
+                
+            </div>
+
+            <section class="cart">
+                <div class="cart-item-box">
+                    <div class="product-card">
+                        <div class="card">
+                            <div class="img-box">
+                                <img src="images/product_banana.jpg" alt="Bananas" class="product-img">
+                            </div>
+
+                            <div class="detail">
+                                <h4 class="product-name">Dole Bananas</h4>
+
+                                <div class="wrapper">
+                                    <div class="product-qty">
+                                        <button id="decrement" onclick="minusBananas()">
+                                            <i class="fa-solid fa-arrow-down"></i>
+                                        </button>
+
+                                        <span id="quantityBananas">0</span>
+
+                                        <button id="increment" onclick="plusBananas()">
+                                            <i class="fa-solid fa-arrow-up"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="price">
+                                        $ <span id="price">1 / lbs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="card">
+                            <div class="img-box">
+                                <img src="images/product_apple.jpg" alt="Gala Apples" class="product-img">
+                            </div>
+
+                            <div class="detail">
+                                <h4 class="product-name">Gala Apples</h4>
+
+                                <div class="wrapper">
+                                    <div class="product-qty">
+                                        <button id="decrement" onclick="minusApples()">
+                                            <i class="fa-solid fa-arrow-down"></i>
+                                        </button>
+
+                                        <span id="quantityApples">0</span>
+
+                                        <button id="increment" onclick="plusApples(2)">
+                                            <i class="fa-solid fa-arrow-up"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="price">
+                                        $ <span id="price">2 / lbs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="card">
+                            <div class="img-box">
+                                <img src="images/product_shirt.jpg" alt="Shirt Type A" class="product-img">
+                            </div>
+
+                            <div class="detail">
+                                <h4 class="product-name">Shirt Type A</h4>
+
+                                <div class="wrapper">
+                                    <div class="product-qty">
+                                        <button id="decrement" onclick="minusShirtAs()">
+                                            <i class="fa-solid fa-arrow-down"></i>
+                                        </button>
+
+                                        <span id="quantityShirtAs">0</span>
+
+                                        <button id="increment" onclick="plusShirtAs()">
+                                            <i class="fa-solid fa-arrow-up"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="price">
+                                        $ <span id="price">10 each</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </section>
+        </div>
+    </div>
+
+    <section>
+       
+
+    </section>
+
+
+    
+    <section>
+        <h1 id="shop">Available Products</h1>
+		<div class="products">
+            <div class="product" id="item1">
+                <img src="images/product_banana.jpg">
+                <div class="product-name">Dole Bananas</div>
+                <div class="product-price">Price: $1 \ lbs</div>
+                <!--<button class="addToCart" onclick="addToCart(item1)"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>-->
+            </div>
+
+            <div class="product" id="item2">
+                <img src="images/product_apple.jpg">
+                <div class="product-name">Gala Apples</div>
+                <div class="product-price">Price: $2 \ lbs</div>
+            </div>
+
+            <div class="product" id="item3">
+                <img src="images/product_shirt.jpg">
+                <div class="product-name">Shirt Type A</div>
+                <div class="product-price">Price: $10</div>
+            </div>
+
+            <!--<div class="product" id="item4">
+                <img src="images/product_shirt2.jpg">
+                <div class="product-name">Shirt Type B</div>
+                <div class="product-price">Price: $15</div>
+            </div>
+
+            <div class="product" id="item5">
+                <img src="images/product_shoes1.jpg">
+                <div class="product-name">Blue Shoes</div>
+                <div class="product-price">Price: $20</div>
+            </div>
+
+            <div class="product" id="item6">
+                <img src="images/product_shoes2.jpg">
+                <div class="product-name">White Shoes</div>
+                <div class="product-price">Price: $30</div>
+            </div>-->
+        </div>
+    </section>
+
+    <br/><br/><br/><br/>
+
+    <!----------------------About------------->
+
+    <section>
+        <h1 id="about">About Us</h1>
+        <p>Top Commerce is a family-owned online store that sells a variety of products and services! We have served over hundreds of thousands of customers since 1997, when we had humble beginnings as a "Ma and Pa shop" located in Washington state. Top Commerce is dedicated to giving you nothing less than the best in all aspects.</p>
+
+        <p>We work with thousands of stores to bring you your favorite brands. Not to mention some of our own creations!</p>
+    </section>
+
+    <!-----------Contact Form------------->
+
+    <section>
+        <h1 id="contact">Contact Us</h1>
+        <p>Questions, concerns, or suggestions? Feel free to send them via this form!</p>
+
+        <form class="contactForm">
+                <input type="text" placeholder="Name" required>
+                <br/>
+                <input type="email" placeholder="Email" required>
+                <br/>
+                <input type="tel" placeholder="Phone Number">
+                <br/>
+                <textarea placeholder="Message" required></textarea>
+                <br/>
+                <button type="submit">Submit</button>
+        </form>
+    </section>
+    
+    <footer>
+        <div id="footBar">
+            <p>Copyright © 2022 Uyenvy Nguyen</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

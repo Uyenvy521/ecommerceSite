@@ -1,0 +1,425 @@
+/* Basics */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    background-color: white;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    padding: 25px;
+}
+
+
+/* Header + Footer Content */
+#stickyBar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: powderblue;
+    box-shadow: 0px 10px 10px lightgray;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+#logoImg {
+    float: left;
+}
+
+#menuBar {
+    float: right;
+    overflow: hidden;
+}
+
+#menuBar li {
+    list-style: none;
+    padding: 0px 10px;
+    display: inline;
+    cursor: pointer;
+}
+
+#menuBar li a {
+    color: black;
+    text-decoration: none;
+}
+
+#menuBar li a:hover {
+    color: white;
+    transition: 0.8 ease;
+}
+
+#footBar {
+    background-color: powderblue;
+    text-align: center;
+}
+
+/* Login Content */
+  /* The popup form - hidden by default */
+  .form-popup, .signupPopup {
+    display: none;
+    position: fixed;
+    border: 3px solid #f1f1f1;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 600px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 10px lightgray;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/login button */
+  .form-container .btn {
+    background-color: powderblue;
+    color: black;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: rgb(255, 210, 210);
+    color: black;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+
+#logoutName, #profileLink, #profilePop {
+    display: none;
+}
+
+.closeX {
+    cursor:pointer;
+}
+
+#profileSec {
+    margin-left: 20px;
+}
+
+#profileNormal, #profileAdmin {
+    display: none;
+}
+
+.payment-form {
+    border: 2px dashed black;
+    padding: 20px;
+}
+
+#signuplink {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.profilePopup {
+    width: 70%;
+    height: 85%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 25px 40px lightgray;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    position: absolute;
+    display: none;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+#editBtn {
+    padding: 3px 12px;
+    text-align: center;
+    background-color: powderblue;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+/* Home Page */
+#featuredSection {
+    text-align: center;
+    margin-top: 20px;
+    margin: auto;
+    padding: 20px;
+}
+
+#featureTable {
+    text-align: center;
+    display: inline-flex;
+    overflow: auto;
+}
+
+.featureRound {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+/* Cart */
+#cartSpace {
+    width: 70%;
+    height: 85%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 25px 40px lightgray;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    position: absolute;
+    display: none;
+    overflow-y: scroll;
+}
+
+.cartHeader, #profileHeader {
+    margin: auto;
+    width: 90%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartHeading, .removeAction {
+    font-size: 20px;
+}
+
+.removeAction {
+    color: black;
+    background-color: red;
+    border: none;
+}
+
+.removeAction:hover {
+    color: white;
+    background-color: black;
+}
+
+/* Shop Page */
+input:focus {
+    outline: 2px solid var(--azure);
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.payment-form {
+   float: right;
+   margin: 10px;
+}
+
+.cvv input{
+    width: 20%;
+}
+
+.method-selected, .btn-primary {
+    background: powderblue;
+    color: black;
+    padding: 10px;
+    border: none;
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
+}
+
+.product-card, .card {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    float: left;
+}
+
+.products {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.product {
+    box-shadow: 0px 0px 10px 10px powderblue;
+    margin: 20px;
+    padding: 20px;
+}
+
+.product img{
+    height: 200px;
+    width: 200px;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+#decrement, #increment {
+    background-color: powderblue;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+}
+
+#decrement:hover, #increment:hover {
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.amount {
+    float: bottom;
+    clear: both;
+    margin: 20px;
+}
+
+
+.addToCart {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin: 5px;
+}
+
+.addToCart:hover {
+    background-color: black;
+    color: white;
+}
+
+.cartImg > img {
+    width: 100px;
+}
+
+/* Contact Us form */
+.contactForm {
+    width: 60%;
+    padding: 20px;
+    resize: vertical;
+    margin-right: 20px;
+}
+.contactForm input, .contactForm textarea {
+    width: 50%;
+}
+
+.contactForm textarea {
+    height: 150px;
+}
+
+/* Screen sizes */
+
+@media (max-width: 1280px) {
+    .item-flex {
+        flex-direction: column-reverse;
+    }
+
+    .cart {
+        width: 100%;
+        border-right: none;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .cart-item-box {
+        display: grid;
+        grid-template-columns: lfr lfr;
+        width: 100%;
+        border-bottom: 1px solid var(--gainsboro);
+    }
+
+    .cart-item-box .wrapper {
+        margin-top: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --px: 40px;
+    }
+
+    .cart {
+        grid-template-columns: lfr;
+    }
+
+    .wrapper-flex {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 567) {
+    :root {
+        --px: 20px;
+    }
+
+    .payment-method, .input-flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .payment-method .method {
+        width: 100%;
+    }
+
+    .input-flex, .expire-date, .input-flex .cvv {
+        width: 100%
+    }
+
+    .expire-date .input-flex {
+        flex-direction: row;
+    }
+}
