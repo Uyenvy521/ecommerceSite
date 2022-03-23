@@ -149,7 +149,7 @@
             <h1><a class = "closeX" onclick="cartClose()"><i class="fa-solid fa-x"></i></a></h1>
         </div>
         <div class="cartContainer">
-            <div class="payment-form">
+            <form class="payment-form" name="payType" action="#">
                 <div class="payment-method">
                     <button class="method-selected">
                         <i class="fa-solid fa-credit-card"></i> <span>Credit Card</span>
@@ -159,8 +159,6 @@
                         <i class="fa-brands fa-paypal"></i></i> <span onclick="payPal()">PayPal</span>
                     </button>
                 </div>
-                
-                <form action="#">
                     <div class="cardholder-name">
                         <label for="cardholder-name" class="label-default">Cardholder name</label>
                         <br/>
@@ -170,7 +168,7 @@
                     <div class="card-number">
                         <label for="card-number" class="label-default">Cardholder number</label>
                         <br/>
-                        <input type="number" id="ard-number" class="input-default" required>
+                        <input type="number" id="card-number" class="input-default" required>
                     </div>
 
                     <div class="input-flex">
@@ -180,7 +178,7 @@
                         </div>
                         
                         <div class="input-flex">
-                            <input type="number" name="day" id="expire-date" placeholder=""31" min="1" max="31" class="input-default" required> / <input type="number" name="month" id="expire-date" placeholder=""12" min="1" max="12" class="input-default required">
+                            <input type="number" name="month" id="expire-date" min="1" max="12" class="input-default" required> / <input type="number" name="year" id="expire-date" min="2000" max="2500" class="input-default" required>
                         </div>
 
                         <div class="cvv">
@@ -196,9 +194,8 @@
                         </div>
                     </div>
                     <button class="btn-primary" type="button" onclick="payment()" method="post" onsubmit="return false"><b>Pay</b> </button>
-                </form>
                 
-            </div>
+            </form>
 
             <section class="cart">
                 <div class="cart-item-box">

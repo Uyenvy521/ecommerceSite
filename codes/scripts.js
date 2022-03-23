@@ -48,7 +48,7 @@ function openForm() {
   var adminCheckBox = document.getElementById("adminCheck");
   var objLogins = [
     { userID: 0, username: "admin@email.com", password: "password123", firstname: "Admin", lastname: "of Top Commerce", isAdmin: true},
-    { userID: 1, username: "uyemvy@gmail.com", password: "password", firstname: "Uyenvy", lastname: "Nguyen", isAdmin: false}
+    { userID: 1, username: "uyenvy521@gmail.com", password: "jaden123", firstname: "Uyenvy", lastname: "Nguyen", isAdmin: false}
   ];
 
   var numUsers = 0;
@@ -144,35 +144,20 @@ var registeredUsers = [];
     var username = document.getElementById("email").value;
     var password = document.getElementById("psw").value;
 
+    var index = -1;
+
     for (i=0; i < objLogins.length && !loginCheck; i++) {
       if (username == objLogins[i].username && password == objLogins[i].password) {
-        if (objLogins[i].isAdmin = true) {
+        if (objLogins[i].isAdmin) {
           window.alert("Admin login successful.");
           adminRights = true;
         }
         else {
           window.alert("Login successful.");
         }
-      }
       index = i;
       loginCheck = true;
-      /*else if (username == objLogins[index].username && password == objLogins[index].password && adminStatus == false) {
-        window.alert("Login successful.");
-        index = i;
-        loginCheck = true;
-        adminRights = false;
-        break;
       }
-      else if (username == "" || password == "") {
-        window.alert("Login fields cannot be blank!");
-        loginCheck = false;
-        break;
-      }
-      else {
-        window.alert("Login unsuccessful.");
-        loginCheck = false;
-        break;
-      }*/
     }
 
     if (loginCheck == true) {
@@ -181,8 +166,8 @@ var registeredUsers = [];
       document.getElementById('myForm').style.display = "none";
       document.getElementById('profileLink').style.display = "inline-block";
 
-      document.getElementById('firstNameDisplay').innerHTML = objLogins[i].firstname;
-      document.getElementById('lastNameDisplay').innerHTML = objLogins[i].lastname;
+      document.getElementById('firstNameDisplay').innerHTML = objLogins[index].firstname;
+      document.getElementById('lastNameDisplay').innerHTML = objLogins[index].lastname;
     }
     else if (username == "" || password == "") {
       window.alert("Login fields cannot be blank!");
@@ -245,10 +230,10 @@ for (let i = 0; i < incrementBtn.length; i++) {
 //var totalCount = 0;
 
 function plusBananas() {
-  var element = document.getElementById('quantityBananas');
-  var value = element.innerHTML;
+  var productElement = document.getElementById('quantityBananas');
+  var value = productElement.innerHTML;
   var totalCount = document.getElementById('totalAmount');
-  var totalCounter = totalCount.innerHTML;
+  var totalCounter = Number(totalCount.innerHTML);
   
   totalCounter++;
   value++;
@@ -257,28 +242,31 @@ function plusBananas() {
 }
 
 function minusBananas() {
-  var element = document.getElementById('quantityBananas');
-  var value = element.innerHTML;
+  var productElement = document.getElementById('quantityBananas');
+  var value = productElement.innerHTML;
   var totalCount = document.getElementById('totalAmount');
-  var totalCounter = totalCount.innerHTML;
+  var totalCounter = Number(totalCount.innerHTML);
 
-  totalCounter--;
-  value--;
-  if (value < 0) {
+  if (value <= 0) {
     value = 0;
+  }
+  else {
+    totalCounter--;
+    value--;
   }
   if (totalCounter < 0) {
     totalCounter = 0;
   }
+
   document.getElementById('quantityBananas').innerHTML = Number(value);
   document.getElementById('totalAmount').innerHTML = Number(totalCounter);
 }
 
 function plusApples() {
-  var element = document.getElementById('quantityApples');
-  var value = element.innerHTML;
+  var productElement = document.getElementById('quantityApples');
+  var value = productElement.innerHTML;
   var totalCount = document.getElementById('totalAmount');
-  var totalCounter = totalCount.innerHTML;
+  var totalCounter = Number(totalCount.innerHTML);
 
   totalCounter+=2;
   value++;
@@ -288,28 +276,31 @@ function plusApples() {
 }
 
 function minusApples() {
-  var element = document.getElementById('quantityApples');
-  var value = element.innerHTML;
+  var productElement = document.getElementById('quantityApples');
+  var value = productElement.innerHTML;
   var totalCount = document.getElementById('totalAmount');
-  var totalCounter = totalCount.innerHTML;
+  var totalCounter = Number(totalCount.innerHTML);
 
-  totalCounter-=2;
-  value--;
-  if (value < 0) {
+  if (value <= 0) {
     value = 0;
+  }
+  else {
+    totalCounter-=2;
+     value--;
   }
   if (totalCounter < 0) {
     totalCounter = 0;
   }
+
   document.getElementById('quantityApples').innerHTML = Number(value);
   document.getElementById('totalAmount').innerHTML = Number(totalCounter);
 }
 
 function plusShirtAs() {
-  var element = document.getElementById('quantityShirtAs');
-  var value = element.innerHTML;
+  var productElement = document.getElementById('quantityShirtAs');
+  var value = productElement.innerHTML;
   var totalCount = document.getElementById('totalAmount');
-  var totalCounter = totalCount.innerHTML;
+  var totalCounter = Number(totalCount.innerHTML);
 
   totalCounter+=10;
   value++;
@@ -318,36 +309,40 @@ function plusShirtAs() {
 }
 
 function minusShirtAs() {
-  var element = document.getElementById('quantityShirtAs');
-  var value = element.innerHTML;
-  var totalCount = document.getElementById('totalAmount');
-  var totalCounter = totalCount.innerHTML;
+  var productElement = document.getElementById('quantityShirtAs');
+  var value = productElement.innerHTML;
+  var paymentTotalElement = document.getElementById('totalAmount');
+  var paymentTotal = Number(paymentTotalElement.innerHTML);
 
-  totalCounter-=10;
-  value--;
-  if (value < 0) {
+  if (value <= 0) {
     value = 0;
   }
-  if (totalCounter < 0) {
-    totalCounter = 0;
+  else {
+    paymentTotal-=10;
+    value--;
   }
+  if (paymentTotal < 0) {
+    paymentTotal = 0;
+  }
+  
   document.getElementById('quantityShirtAs').innerHTML = Number(value);
-  document.getElementById('totalAmount').innerHTML = totalCounter;
+  document.getElementById('totalAmount').innerHTML = paymentTotal;
 }
 
 let orders = [];
 
 var numOrder=0;
 
-let numBananas = document.getElementById('quantityBananas');
-  let numApples = document.getElementById('quantityApples');
-  let numShirtAs = document.getElementById('quantityShirtAs');
-  let totalCounter = document.getElementById('totalAmount');
+let numBananas = Number(document.getElementById('quantityBananas'));
+  let numApples = Number(document.getElementById('quantityApples'));
+  let numShirtAs = Number(document.getElementById('quantityShirtAs'));
+  let totalCounter = Number(document.getElementById('totalAmount'));
 
-  let cardholdername = document.getElementById('cardholder-name');
-  let cardnumber = document.getElementById('card-number');
-  let expiry = document.getElementById('expire-date');
-  let cvv = document.getElementById('cvv');
+  let cardholdername = document.forms['payType']['cardholder-name'].value;
+  let cardnumber =  document.forms['payType']['card-number'].value;
+  let expMonth = document.forms['payType']['month'].value;
+  let expYear = document.forms['payType']['year'].value;
+  let cvv = document.forms['payType']['cvv'].value;
 
 function payment() {
   if (loginCheck == false) {
@@ -359,11 +354,23 @@ function payment() {
 }
 
 function purchase() {
-  /*if (totalCounter !== null && totalCounter.value === "") {
-    window.alert("You are not paying for any items. Please enter a quantity of items you'd like to purchase.");
-  }
-  else*/ if (cardholdername !== null && cardholdername.value === "") {
+  let cardNameCheck = cardholdername;
+  let cardNumCheck = cardnumber;
+  let exMonthCheck = expMonth;
+  let exYearCheck = expYear;
+  let cvvCheck = cvv;
+
+  var qBananas = Number(quantityBananas);
+  var qApples = Number(quantityApples);
+  var qShirtAs = Number(numShirtAs);
+  
+  if (cardNameCheck == "") {
     alert("One or more payment fields are blank. Please fill out the required fields.");
+    return false;
+  }
+  else if (qBananas == 0 && qApples == 0 && qShirtAs == 0) {
+    alert("You are not purchasing anything. Please select your items to purchase.");
+    return false;
   }
   else {
     window.alert("Thank you for purchase! You can check your order history under Profile.");
@@ -372,11 +379,11 @@ function purchase() {
       {
         orderIndex: numOrder,
         item1: "Dole Bananas",
-        quantity: parseInt(numBananas),
+        quantityBananas: numBananas,
         item2: "Gala Apples",
-        quantity: numApples,
+        quantityApples: numApples,
         item3: "Shirt Type A",
-        quantity: numShirtAs,
+        quantityShirtTypeAs: numShirtAs,
         total: "$" + totalCounter
       }
     ];
@@ -406,18 +413,18 @@ function purchase() {
    cartClose();
    clearCart();
    numOrder++;
-   localStorage.setItem("viewOrder", orderList[numOrder]);
+   //localStorage.setItem("viewOrder", orderList[numOrder]);
 
-   updateOrderHistory();
+   //updateOrderHistory();
   }
 }
 
-function updateOrderHistory() {
+/*function updateOrderHistory() {
   let orderStorage = localStorage.getItem("viewOrder", orderList[numOrder] );
   for (var i = 0; i > orders.length; i++) {
     document.getElementById('viewOrderHistory').innerHTML = orderStorage + "<br/>";
   }
-}
+}*/
 
 
 function profileFunction() {
