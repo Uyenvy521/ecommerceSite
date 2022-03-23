@@ -97,7 +97,7 @@
 
       <!------------------Signup Form--------------->
     <div class="signupPopup" id="aForm">
-        <form class="form-container" method="post" onsubmit="return false;">
+        <form id="signup-form" class="form-container" method="post" onsubmit="return false;" action="/">
             <h1>Please enter the following to register for an account!</h1>
             <label for="firstname"><b>First Name</b></label>
             <input type="text" placeholder="First Name" id="firstname" required>
@@ -109,7 +109,7 @@
              <label for="psw2"><b>Password</b></label>
              <input type="password" placeholder="ExamplePassword123" id="psw2" required>
             
-             <button type="submit" class="btn" onclick="registerForm()">Register Now</button>
+             <button type="submit" class="btn" onclick="registerForm()" >Register Now</button>
              <button type="button" class="btn cancel" onclick="closeSignUpForm()">Close</button>
         </form>
     </div>

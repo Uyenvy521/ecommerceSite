@@ -82,12 +82,14 @@ var registeredUsers = [];
       firstname: "None",
       lastname: "None"
     }
+    
 
   function registerForm() {
     window.alert("Thank you for signing up! You may now login with your new credentials.");
 
     document.getElementById('aForm').style.display = "none";
-    var arrayEnd = Number(objLogins.length);
+  //  var arrayEnd = Number(objLogins.length);
+
   
     const newRegister = {
       id: Number(objLogins.length),
@@ -97,11 +99,13 @@ var registeredUsers = [];
       lastname: document.getElementById('lastname').value
     };
  
-    //objLogins.push(blankUser, newRegister);
+    objLogins.push(newRegister);
 
-    objLogins.splice(arrayEnd.value, 0, newRegister);
+    //objLogins.splice(arrayEnd.value, 0, newRegister);
 
     /*objLogins.push(objLogins.firstname == document.getElementById('firstname').value, objLogins.lastname == document.getElementById('lastname').value, objLogins.username == document.getElementById('email2').value, objLoginsS.password == document.getElementById('psw2').value);*/
+
+    return false;
   }
 
   let nickname = undefined;
