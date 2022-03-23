@@ -28,14 +28,16 @@ function openForm() {
     }
   }*/
 
-  let objLogins = [
+  var objLogins = [
     {
+      userID: 0,
       username: "admin@email.com",
       password: "password123",
       firstname: "Admin",
       lastname: "of Top Commerce"
     },
     {
+      userID: 1,
       username: "uyenvy@gmail.com",
       password: "password",
       firstname: "Uyenvy",
@@ -72,25 +74,34 @@ function updateUsers() {
   }
 }*/
 
-let newRegister = [];
+var registeredUsers = [];
+    var blankUser = {
+      id: null,
+      username: "None",
+      password: "None",
+      firstname: "None",
+      lastname: "None"
+    }
 
   function registerForm() {
     window.alert("Thank you for signing up! You may now login with your new credentials.");
 
-    newRegister = {
+    document.getElementById('aForm').style.display = "none";
+    var arrayEnd = Number(objLogins.length);
+  
+    const newRegister = {
+      id: Number(objLogins.length),
       username: document.getElementById('email2').value,
       password: document.getElementById('psw2').value,
       firstname: document.getElementById('firstname').value,
       lastname: document.getElementById('lastname').value
-    }
+    };
  
-    objLogins.push(newRegister);
+    //objLogins.push(blankUser, newRegister);
 
-    document.getElementById('aForm').style.display = "none";
+    objLogins.splice(arrayEnd.value, 0, newRegister);
 
-    /*objLogins.push(objLogins.firstname == document.getElementById('firstname').value, objLogins.lastname == document.getElementById('lastname').value, objLogins.username == document.getElementById('email2').value, objLogins.password == document.getElementById('psw2').value);*/
-    
-    
+    /*objLogins.push(objLogins.firstname == document.getElementById('firstname').value, objLogins.lastname == document.getElementById('lastname').value, objLogins.username == document.getElementById('email2').value, objLoginsS.password == document.getElementById('psw2').value);*/
   }
 
   let nickname = undefined;
@@ -127,6 +138,11 @@ let newRegister = [];
       }
       else if (username == "" || password == "") {
         window.alert("Login fields cannot be blank!");
+        loginCheck = false;
+        break;
+      }
+      else {
+        window.alert("Login unsuccessful.");
         loginCheck = false;
         break;
       }
