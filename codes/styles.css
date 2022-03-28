@@ -188,7 +188,11 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 /* Home Page */
-
+.heading {
+    background-image: linear-gradient(to right, powderblue , rgb(145, 147, 248));
+    padding: 20px;
+    box-shadow: 0px 10px 10px lightgray;
+}
 
 #featuredSection {
     text-align: center;
@@ -398,6 +402,22 @@ input::-webkit-outer-spin-button {
     }
 }
 
+@media (max-width: 1200px) {
+    .contactForm {
+        width: 100%;
+        padding: 20px;
+        resize: vertical;
+        margin-right: 20px;
+    }
+    .contactForm input, .contactForm textarea {
+        width: 100%;
+    }
+    
+    .contactForm textarea {
+        height: 150px;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --px: 40px;
@@ -412,7 +432,7 @@ input::-webkit-outer-spin-button {
     }
 }
 
-@media (max-width: 567) {
+@media (max-width: 567px) {
     :root {
         --px: 20px;
     }
