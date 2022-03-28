@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-
+<!-- ------------Profile Form (admin)-->
         <div id= "profileAdmin">            
             <div id="profileSec">
                 <div id="profileEdit">
@@ -58,12 +58,16 @@
                 <br/>
                 <div id="adminUsers">
                     <b>Users: </b>
+                    <span id="userList"></span>
                     <br/>
-                    <span id="userList"  onload="loadUsers()">User List Here</span>
+                    <button name="userListBtn" id="userListBtn" onclick="loadUsers()" onsubmit="return false">Generate User List</button>
+                    <button name="userListBtn" id="userListBtn" onclick="signUpForm()" onsubmit="return false">Add a User</button>
+                    <button name="userListBtn" id="userListBtn" onclick="deleteUser()" onsubmit="return false">Delete a User</button>
                 </div>
                 <br/>
+                
                 <div id="orderSection">
-                    <b>Order List: </b>
+                    <b>Orders Placed: </b>
                     <br/>
                     <span id="viewOrderHistory">No orders have been made yet!</span>
                 </div>
@@ -75,7 +79,7 @@
 
     <div class="form-popup" id="myForm">
         <form class="form-container"method="post" onsubmit="return false" id="loginFormish">
-          <h1>Login to Top Commerce</h1>
+          <center><h1>Login to Top Commerce</h1></center>
       
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Email" name="email" id="email" required>
@@ -96,7 +100,7 @@
       <!------------------Signup Form--------------->
     <div class="signupPopup" id="aForm">
         <form id="signup-form" class="form-container" method="post" onsubmit="return false" action="/">
-            <h1>Please enter the following to register for an account!</h1>
+        <center><h1>Please enter the following to register for an account!</h1></center>
             <label for="firstname"><b>First Name</b></label>
             <input type="text" placeholder="First Name" id="firstname" required>
             <label for="lastname"><b>Last Name</b></label>
@@ -149,7 +153,7 @@
             <h1><a class = "closeX" onclick="cartClose()"><i class="fa-solid fa-x"></i></a></h1>
         </div>
         <div class="cartContainer">
-            <form class="payment-form" name="payType" action="#">
+            <form class="payment-form" id="payType" name="payType" method="post">
                 <div class="payment-method">
                     <button class="method-selected">
                         <i class="fa-solid fa-credit-card"></i> <span>Credit Card</span>
@@ -193,14 +197,14 @@
                             <span>Total: </span>$ <span id="totalAmount">0</span>
                         </div>
                     </div>
-                    <button class="btn-primary" type="button" onclick="payment()" method="post" onsubmit="return false"><b>Pay</b> </button>
+                    <button class="btn-primary" type="button" onclick="return payment()" method="post" onsubmit="return false"><b>Pay</b></button>
                 
             </form>
 
             <section class="cart">
                 <div class="cart-item-box">
                     <div class="product-card">
-                        <div class="card">
+                        <div class="card" id="invBananas">
                             <div class="img-box">
                                 <img src="images/product_banana.jpg" alt="Bananas" class="product-img">
                             </div>
@@ -230,7 +234,7 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="card">
+                        <div class="card" id="invApple">
                             <div class="img-box">
                                 <img src="images/product_apple.jpg" alt="Gala Apples" class="product-img">
                             </div>
@@ -260,7 +264,7 @@
                     </div>
 
                     <div class="product-card">
-                        <div class="card">
+                        <div class="card" id="invShirt">
                             <div class="img-box">
                                 <img src="images/product_shirt.jpg" alt="Shirt Type A" class="product-img">
                             </div>
@@ -303,44 +307,42 @@
 
     
     <section>
+
         <h1 id="shop">Available Products</h1>
+        <div id="stockList">
+            <b>Manage Inventory: </b>
+            <br/>
+            <button class="stockBtn" onclick="hideBananas()">Toggle Bananas</button>
+            <button class="stockBtn" onclick="hideApples()">Toggle Apples</button>
+            <button class="stockBtn" onclick="hideShirtAs()">Toggle Shirt Type A</button>
+        </div>
+        <br/>
+
 		<div class="products">
-            <div class="product" id="item1">
-                <img src="images/product_banana.jpg">
-                <div class="product-name">Dole Bananas</div>
-                <div class="product-price">Price: $1 \ lbs</div>
-                <!--<button class="addToCart" onclick="addToCart(item1)"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>-->
+            <div id="invBananas">
+                <div class="product" id="item1">
+                    <img src="images/product_banana.jpg">
+                    <div class="product-name">Dole Bananas</div>
+                    <div class="product-price">Price: $1 \ lbs</div>
+                </div>
             </div>
 
-            <div class="product" id="item2">
-                <img src="images/product_apple.jpg">
-                <div class="product-name">Gala Apples</div>
-                <div class="product-price">Price: $2 \ lbs</div>
+
+            <div id="invApple">
+                <div class="product" id="item2">
+                    <img src="images/product_apple.jpg">
+                    <div class="product-name">Gala Apples</div>
+                    <div class="product-price">Price: $2 \ lbs</div>
+                </div>
             </div>
 
-            <div class="product" id="item3">
-                <img src="images/product_shirt.jpg">
-                <div class="product-name">Shirt Type A</div>
-                <div class="product-price">Price: $10</div>
+            <div id="invShirt">
+                <div class="product" id="item3">
+                    <img src="images/product_shirt.jpg">
+                    <div class="product-name">Shirt Type A</div>
+                    <div class="product-price">Price: $10</div>
+                </div>
             </div>
-
-            <!--<div class="product" id="item4">
-                <img src="images/product_shirt2.jpg">
-                <div class="product-name">Shirt Type B</div>
-                <div class="product-price">Price: $15</div>
-            </div>
-
-            <div class="product" id="item5">
-                <img src="images/product_shoes1.jpg">
-                <div class="product-name">Blue Shoes</div>
-                <div class="product-price">Price: $20</div>
-            </div>
-
-            <div class="product" id="item6">
-                <img src="images/product_shoes2.jpg">
-                <div class="product-name">White Shoes</div>
-                <div class="product-price">Price: $30</div>
-            </div>-->
         </div>
     </section>
 
@@ -359,19 +361,25 @@
 
     <section>
         <h1 id="contact">Contact Us</h1>
-        <p>Questions, concerns, or suggestions? Feel free to send them via this form!</p>
+        <div id="contactFormAll">
+            <p>Questions, concerns, or suggestions? Feel free to send them via this form!</p>
 
-        <form id="contactUs" class="contactForm" onsubmit="return false">
-                <input type="text" placeholder="Name" id="nameContact" required>
-                <br/>
-                <input type="email" placeholder="Email" id="emailContact" required>
-                <br/>
-                <input type="tel" id="phoneContact" placeholder="Phone Number">
-                <br/>
-                <textarea placeholder="Message" id="msgContact" equired></textarea>
-                <br/>
-                <button  id="contactSubmitBtn" type="button" onclick="contactSubmit()">Submit</button>
-        </form>
+            <form id="contactUs" name="contactUs" class="contactForm" onsubmit="return false" method="post">
+                    <input type="text" placeholder="Name" id="nameContact" required>
+                    <br/>
+                    <input type="email" placeholder="Email" id="emailContact" required>
+                    <br/>
+                    <input type="tel" id="phoneContact" placeholder="Phone Number">
+                    <br/>
+                    <textarea placeholder="Message" id="msgContact" equired></textarea>
+                    <br/>
+                    <button  id="contactSubmitBtn" type="button" onclick="return contactSubmit()">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contactMessageDisplay">
+        <p>Thank you for submitting an inquiry. A representative will follow up with you within 1-3 business days.</p>
     </section>
     
     <footer>

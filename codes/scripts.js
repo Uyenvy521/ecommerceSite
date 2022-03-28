@@ -14,36 +14,6 @@ function openForm() {
     document.getElementById("aForm").style.display = "none";
   }
 
-  /*function validateLogin() {
-    var username=document.getElementById("email1").nodeValue;
-    var password=document.getElementById("psw1").nodeValue;
-    if (username=='admin@email.com' && password=='password123' && document.getElementById('adminCheck').checked) {
-      window.alert("Admin login successful.");
-    }
-    else if (username=='uyenvy@gmail.com' && password=='password') {
-      window.alert('Login successful.');
-    }
-    else {
-      window.alert("Login failed.");
-    }
-  }*/
-
-  /*var objLogins = [
-    {
-      userID: 0,
-      username: "admin@email.com",
-      password: "password123",
-      firstname: "Admin",
-      lastname: "of Top Commerce"
-    },
-    {
-      userID: 1,
-      username: "uyenvy@gmail.com",
-      password: "password",
-      firstname: "Uyenvy",
-      lastname: "Nguyen"
-    }
-  ];*/
 
   var adminCheckBox = document.getElementById("adminCheck");
   var objLogins = [
@@ -53,32 +23,6 @@ function openForm() {
 
   var numUsers = 0;
   
-function loadUsers() {
-  localStorage.setItem("viewUsers", objLogins[numUsers]);
-
-   updateUsers();
-}
-
-function updateUsers() {
-  let userStorage = localStorage.getItem("viewUsers", objLogins[numUsers] );
-  for (var i = 0; i > orders.length; i++) {
-    document.getElementById('userList').innerHTML = userStorage + "<br/>";
-  }
-}
-  
-
-/*function loadUsers() {
-  for (var i = -1; i < objLogins.length; i++) {
-    if (i == -1) {
-      i==0;
-      document.getElementById('userList').innerHTML = document.write(JSON.stringify(objLogins[i]));
-    }
-    else {
-      document.getElementById('userList').addition.innerText += (document.getElementById('userList').innertext =JSON.stringify(objLogins[i]) + "<br/>");
-    }
-  
-  }
-}*/
 
 var registeredUsers = [];
     var blankUser = {
@@ -89,13 +33,36 @@ var registeredUsers = [];
       lastname: "None",
       isAdmin: false
     }
+
+    function loadUsers() {
+      var i;
+      var userPopulation = document.getElementById('userList');
+      if (objLogins == undefined) {
+        userPopulation.innerHTML = "There are no registered users on Top Commerce.";
+      }
+      else {
+        for (i = -1; i != objLogins.length + 1; i++) {
+          userPopulation.innerHTML = (document.getElementById('userList').innerHTML = JSON.stringify(objLogins[i]) + "<br/>");
+        }
+      }
+    
+    }
+
+function deleteUser() {
+  var delFunct = prompt("Please enter the user ID number that you wish to delete.");
+  if (isNaN(delFunct)) {
+    window.alert("That was not a valid user ID number. Please try again.");
+  }
+  else {
+    objLogins.splice(delFunct, 1);
+  }
+}
     
 
   function registerForm() {
     window.alert("Thank you for signing up! You may now login with your new credentials.");
 
     document.getElementById('aForm').style.display = "none";
-  //  var arrayEnd = Number(objLogins.length);
 
   const newUserFields = document.getElementById('signup-form').getElementsByTagName('input');
 
@@ -107,21 +74,8 @@ var registeredUsers = [];
     lastname: newUserFields['lastname'].value,
     isAdmin: newUserFields['adminCheck'].checked
   };
-
-  
-    /*const newRegister = {
-      id: Number(objLogins.length),
-      username: document.getElementById('email2').value,
-      password: document.getElementById('psw2').value,
-      firstname: document.getElementById('signup-form').getElementsByTagName('input'),
-      lastname: document.getElementById('lastname').value
-    };*/
  
     objLogins.push(newRegister);
-
-    //objLogins.splice(arrayEnd.value, 0, newRegister);
-
-    /*objLogins.push(objLogins.firstname == document.getElementById('firstname').value, objLogins.lastname == document.getElementById('lastname').value, objLogins.username == document.getElementById('email2').value, objLoginsS.password == document.getElementById('psw2').value);*/
 
     return false;
   }
@@ -160,6 +114,10 @@ var registeredUsers = [];
       }
     }
 
+    if (adminRights == true) {
+      document.getElementById('stockList').style.display = "block";
+    }
+
     if (loginCheck == true) {
      document.getElementById('loginName').style.display = "none";
       document.getElementById("logoutName").style.display = "inline-block";
@@ -181,6 +139,7 @@ var registeredUsers = [];
   function logoutFunction() {
     adminRights = false;
     loginCheck = false;
+    document.getElementById('stockList').style.display = "none";
     document.getElementById('loginName').style.display = "inline-block";
       document.getElementById("logoutName").style.display = "none";
       document.getElementById('profileLink').style.display = "none";
@@ -193,41 +152,6 @@ var registeredUsers = [];
   function cartClose() {
     document.getElementById("cartSpace").style.display = "none";
   }
-
-//initial elements for cart
-
-/*'use strict';
-
-const payAmountBtn = document.querySelector('#payAmount');
-const decrementBtn = document.querySelectorAll('#decrement');
-const quantityElem = document.querySelectorAll('#quantity');
-const incrementBtn = document.querySelectorAll('#increment');
-const priceElem = document.querySelectorAll('#price');
-const totalElem = document.querySelector('#total');
-
-for (let i = 0; i < incrementBtn.length; i++) {
-  incrementBtn[i].addEventListener('click', function () {
-    let increment = Number(this.previousElementSibling.textContent);
-
-    increment++;
-
-    this.previousElementSibling.textContent = increment;
-
-    totalCalc();
-  });
-
-  decrementBtn[i].addEventListener('click', function () {
-    let decrement = Number(this.nextElementSibling.textContent);
-
-    decrement <= 1 ? 1 : decrement--;
-
-    this.nextElementSibling.textContent = decrement;
-
-    totalCalc();
-  });
-}*/
-
-//var totalCount = 0;
 
 function plusBananas() {
   var productElement = document.getElementById('quantityBananas');
@@ -333,16 +257,7 @@ let orders = [];
 
 var numOrder=0;
 
-let numBananas = Number(document.getElementById('quantityBananas'));
-  let numApples = Number(document.getElementById('quantityApples'));
-  let numShirtAs = Number(document.getElementById('quantityShirtAs'));
-  let totalCounter = Number(document.getElementById('totalAmount'));
 
-  let cardholdername = document.forms['payType']['cardholder-name'].value;
-  let cardnumber =  document.forms['payType']['card-number'].value;
-  let expMonth = document.forms['payType']['month'].value;
-  let expYear = document.forms['payType']['year'].value;
-  let cvv = document.forms['payType']['cvv'].value;
 
 function payment() {
   if (loginCheck == false) {
@@ -354,7 +269,18 @@ function payment() {
 }
 
 function purchase() {
-  let cardNameCheck = cardholdername;
+  var numBananas = Number(document.getElementById('quantityBananas'));
+  var numApples = Number(document.getElementById('quantityApples'));
+  var numShirtAs = Number(document.getElementById('quantityShirtAs'));
+  var totalCounter = Number(document.getElementById('totalAmount'));
+
+  var cardholdername = document.forms['payType']['cardholder-name'].value;
+  var cardnumber =  document.forms['payType']['card-number'].value;
+  var expMonth = document.forms['payType']['month'].value;
+  var expYear = document.forms['payType']['year'].value;
+  var cvv = document.forms['payType']['cvv'].value;
+
+  /*let cardNameCheck = cardholdername;
   let cardNumCheck = cardnumber;
   let exMonthCheck = expMonth;
   let exYearCheck = expYear;
@@ -367,8 +293,11 @@ function purchase() {
   if (cardNameCheck == "") {
     alert("One or more payment fields are blank. Please fill out the required fields.");
     return false;
+  }*/
+  if (cardholdername == "" || cardnumber == "" || expMonth == "" || expYear == "" || cvv == "") {
+    alert("One or more payment fields are blank! Please fill out all fields.");
   }
-  else if (qBananas == 0 && qApples == 0 && qShirtAs == 0) {
+  else if (numBananas == 0) {
     alert("You are not purchasing anything. Please select your items to purchase.");
     return false;
   }
@@ -379,52 +308,30 @@ function purchase() {
       {
         orderIndex: numOrder,
         item1: "Dole Bananas",
-        quantityBananas: numBananas,
+        quantityBananas: Number(numBananas),
         item2: "Gala Apples",
-        quantityApples: numApples,
+        quantityApples: Number(numApples),
         item3: "Shirt Type A",
-        quantityShirtTypeAs: numShirtAs,
-        total: "$" + totalCounter
+        quantityShirtTypeAs: Number(numShirtAs),
+        total: "$" + Number(totalCounter)
       }
     ];
     orders.push(orderList);
-    /*if (numBananas != 0 || numApples != 0 || numShirtAs != 0) {
-      
-    }
-    if (numBananas != 0) {
-      orders.push(orders[numOrder].item = "Dole Bananas", orders[numOrder].quantity = numBananas);
-    }
-    if (numApples != 0) {
-      orders.push(orders[numOrder].item = "Gala Apples", orders[numOrder].quantity = numApples);
-    }
-    if (numShirtAs != 0) {
-      orders.push(orders[numOrder].item = "Shirt Type A", orders[numOrder].quantity = numShirtAs);
-    }
-    if (totalCounter != 0) {
-      orders.push(orders[numOrder].total = totalCounter);
-    }*/
 
     if (numOrder == 0) {
        document.getElementById('orderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>";
+       document.getElementById('viewOrderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>";
     } else {
       var addition = document.getElementById('orderHistory');
       addition.innerHTML += (document.getElementById('orderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>");
+      var additionAdmin = document.getElementById('viewOrderHistory');
+      additionAdmin.innerHTML += (document.getElementById('viewOrderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>");
     }
    cartClose();
    clearCart();
    numOrder++;
-   //localStorage.setItem("viewOrder", orderList[numOrder]);
-
-   //updateOrderHistory();
   }
 }
-
-/*function updateOrderHistory() {
-  let orderStorage = localStorage.getItem("viewOrder", orderList[numOrder] );
-  for (var i = 0; i > orders.length; i++) {
-    document.getElementById('viewOrderHistory').innerHTML = orderStorage + "<br/>";
-  }
-}*/
 
 
 function profileFunction() {
@@ -440,11 +347,12 @@ function profileFunction() {
 
 function profileClose() {
   document.getElementById("profilePop").style.display = "none";
-}
-
-
-function orderHistory() {
-  document.write(JSON.stringify(orders));
+  if (adminRights == true) {
+    document.getElementById('profileAdmin').style.display = "none";
+  }
+  else {
+    document.getElementById('profileNormal').style.display = "none";
+  }
 }
 
 function payPal() {
@@ -459,18 +367,62 @@ function clearCart() {
 }
 
 function contactSubmit() {
-  var name = document.forms['contactForm']['nameContact'];
-  var email = document.forms['contactForm']['emailContact'];
-  var phone = document.forms['contactForm']['phoneContact'];
-  var msg = document.forms['contactForm']['msgContact'];
+  var name = document.forms['contactUs']['nameContact'].value;
+  var email = document.forms['contactUs']['emailContact'].value;
+  var phone = document.forms['contactUs']['phoneContact'].value;
+  var msg = document.forms['contactUs']['msgContact'].value;
 
-  if (name.value == "" || email.value == ""|| phone.value ==""|| msg.value=="") {
+  if (name == "" || email == ""|| phone ==""|| msg == "") {
     window.alert("One or more required fields in the Contact form is missing!");
     return false;
   }
   else {
     window.alert("Contact form received.");
 
-    document.getElementById('contactUs').style.display = "none";
+    document.getElementById('contactFormAll').style.display = "none";
+    document.getElementById('contactMessageDisplay').style.display = "block";
+  }
+}
+
+var item1Vis = true;
+var item2Vis = true;
+var item3Vis = true;
+
+function hideBananas() {
+  if (item1Vis == true) {
+    document.getElementById('item1').style.display = "none";
+    document.getElementById('invBananas').style.display = "none"
+    item1Vis = false;
+  }
+  else {
+    document.getElementById('item1').style.display = "block";
+    document.getElementById('invBananas').style.display = "block"
+    item1Vis = true;
+  }
+}
+
+function hideApples() {
+  if (item2Vis == true) {
+    document.getElementById('item2').style.display = "none";
+    document.getElementById('invApple').style.display = "none"
+    item2Vis = false;
+  }
+  else {
+    document.getElementById('item2').style.display = "block";
+    document.getElementById('invApple').style.display = "block"
+    item2Vis = true;
+  }
+}
+
+function hideShirtAs() {
+  if (item3Vis == true) {
+    document.getElementById('item3').style.display = "none";
+    document.getElementById('invShirt').style.display = "none"
+    item3Vis = false;
+  }
+  else {
+    document.getElementById('item3').style.display = "block";
+    document.getElementById('invShirt').style.display = "block"
+    item3Vis = true;
   }
 }
