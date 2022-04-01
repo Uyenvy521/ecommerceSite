@@ -46,6 +46,7 @@ var registeredUsers = [];
         }
       }*/
       var userPopulation = document.getElementById('userList');
+      userPopulation.innerHTML = "";
       for (let i = 0; i < objLogins.length; i++) {
         //userPopulation.innerHTML = JSON.stringify(objLogins);
         userPopulation.innerHTML += "<br/>USER ID: " + JSON.stringify(objLogins[i].userID) + ", " + JSON.stringify(objLogins[i].username);
@@ -66,13 +67,14 @@ function deleteUser() {
 
   function registerForm() {
     window.alert("Thank you for signing up! You may now login with your new credentials.");
+    
 
     document.getElementById('aForm').style.display = "none";
 
   const newUserFields = document.getElementById('signup-form').getElementsByTagName('input');
-
+  var userIDcount = Number(objLogins.length + 1);
   const newRegister = {
-    id: Number(objLogins.length),
+    id: userIDcount,
     username: newUserFields['email2'].value,
     password: newUserFields['psw2'].value,
     firstname: newUserFields['firstname'].value,
@@ -309,6 +311,9 @@ function purchase() {
   else {
     window.alert("Thank you for purchase! You can check your order history under Profile.");
     
+    var userOrderHistory = document.getElementById('orderHistory');
+    var adminOrderHistory = document.getElementById('viewOrderHistory')
+
     let orderList = [
       {
         orderIndex: numOrder,
@@ -324,13 +329,15 @@ function purchase() {
     orders.push(orderList);
 
     if (numOrder == 0) {
-       document.getElementById('orderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>";
-       document.getElementById('viewOrderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>";
-    } else {
-      var addition = document.getElementById('orderHistory');
-      addition.innerHTML += (document.getElementById('orderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>");
-      var additionAdmin = document.getElementById('viewOrderHistory');
-      additionAdmin.innerHTML += (document.getElementById('viewOrderHistory').innerHTML =JSON.stringify(orders[numOrder]) + "<br/>");
+       userOrderHistory.innerHTML = "ORDER #" + JSON.stringify(orderList[numOrder].orderIndex) + "<br/>" + JSON.stringify(orderList[numOrder].item1) + ": " + JSON.stringify(orderList[numOrder].quantityBananas) + "<br/>" + JSON.stringify(orderList[numOrder].item2) + ": " + JSON.stringify(orderList[numOrder].quantityApples)  + "<br/>" + JSON.stringify(orderList[numOrder].item3) + ": " + JSON.stringify(orderList[numOrder].quantityShirtTypeAs + "<br/>Total: $" + JSON.stringify(orderList[numOrder].totalCounter));
+       adminOrderHistory.innerHTML =  "ORDER #" + JSON.stringify(orderList[numOrder].orderIndex) + "<br/>" + JSON.stringify(orderList[numOrder].item1) + ": " + JSON.stringify(orderList[numOrder].quantityBananas) + "<br/>" + JSON.stringify(orderList[numOrder].item2) + ": " + JSON.stringify(orderList[numOrder].quantityApples)  + "<br/>" + JSON.stringify(orderList[numOrder].item3) + ": " + JSON.stringify(orderList[numOrder].quantityShirtTypeAs + "<br/>Total: $" + JSON.stringify(orderList[numOrder].totalCounter));
+    }
+    /*if (numOrder == 0) {
+       userOrderHistory.innerHTML = JSON.stringify(orders[numOrder]) + "<br/>";
+       adminOrderHistory.innerHTML = JSON.stringify(orders[numOrder]) + "<br/>";
+    }*/ else {
+      userOrderHistory.innerHTML += "<br/>ORDER #" + JSON.stringify(orderList[numOrder].orderIndex) + "<br/>" + JSON.stringify(orderList[numOrder].item1) + ": " + JSON.stringify(orderList[numOrder].quantityBananas) + "<br/>" + JSON.stringify(orderList[numOrder].item2) + ": " + JSON.stringify(orderList[numOrder].quantityApples)  + "<br/>" + JSON.stringify(orderList[numOrder].item3) + ": " + JSON.stringify(orderList[numOrder].quantityShirtTypeAs + "<br/>Total: $" + JSON.stringify(orderList[numOrder].totalCounter));
+       adminOrderHistory.innerHTML +=  "<br/>ORDER #" + JSON.stringify(orderList[numOrder].orderIndex) + "<br/>" + JSON.stringify(orderList[numOrder].item1) + ": " + JSON.stringify(orderList[numOrder].quantityBananas) + "<br/>" + JSON.stringify(orderList[numOrder].item2) + ": " + JSON.stringify(orderList[numOrder].quantityApples)  + "<br/>" + JSON.stringify(orderList[numOrder].item3) + ": " + JSON.stringify(orderList[numOrder].quantityShirtTypeAs + "<br/>Total: $" + JSON.stringify(orderList[numOrder].totalCounter));
     }
    cartClose();
    clearCart();
