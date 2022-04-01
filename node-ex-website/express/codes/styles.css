@@ -278,7 +278,7 @@ input::-webkit-outer-spin-button {
     display: block;
 }
 
-.method-selected, .btn-primary, #contactSubmitBtn, #userListBtn, .stockBtn {
+.method-selected, .btn-primary, #contactSubmitBtn, #userListBtn, #registerBtn, #deleteUserBtn, .stockBtn {
     background: powderblue;
     color: black;
     padding: 10px;

@@ -35,15 +35,20 @@ var registeredUsers = [];
     }
 
     function loadUsers() {
-      var i;
+      /*var i;
       var userPopulation = document.getElementById('userList');
       if (objLogins == undefined) {
         userPopulation.innerHTML = "There are no registered users on Top Commerce.";
       }
       else {
-        for (i = -1; i != objLogins.length + 1; i++) {
-          userPopulation.innerHTML = (document.getElementById('userList').innerHTML = JSON.stringify(objLogins[i]) + "<br/>");
+        for (i = 0; i < objLogins.length + 1; i++) {
+          userPopulation.innerHTML  = JSON.stringify(objLogins[i]) + "<br/>";
         }
+      }*/
+      var userPopulation = document.getElementById('userList');
+      for (let i = 0; i < objLogins.length; i++) {
+        //userPopulation.innerHTML = JSON.stringify(objLogins);
+        userPopulation.innerHTML += "<br/>USER ID: " + JSON.stringify(objLogins[i].userID) + ", " + JSON.stringify(objLogins[i].username);
       }
     
     }
